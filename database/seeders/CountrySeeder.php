@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Carbon;
 
 class CountrySeeder extends Seeder
 {
@@ -37,6 +38,8 @@ class CountrySeeder extends Seeder
                 'head_of_state' => $obj->head_of_state,
                 'capital' => $obj->capital,
                 'code2' => $obj->code2,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			]);
     	}
     }

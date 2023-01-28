@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class CountryLanguageSeeder extends Seeder
 {
@@ -26,6 +27,8 @@ class CountryLanguageSeeder extends Seeder
                 'language' => $obj->language,
 				'is_official' => $obj->is_official,
 				'percentage' => $obj->percentage,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
 			]);
     	}
     }

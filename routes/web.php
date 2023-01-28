@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CountryLanguageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('country', CountryController::class);
+Route::resource('city', CityController::class);
+Route::resource('country-language', CountryLanguageController::class);

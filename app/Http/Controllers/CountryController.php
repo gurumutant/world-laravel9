@@ -15,7 +15,10 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::with('citiesCount')->get();
+        foreach ($countries as $country) {
+            echo $country->name." has ".$country->citiesCount." cities<br>";
+        }
     }
 
     /**
