@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('continent',['Asia','Europe','North America','Africa','Oceania','Antarctica','South America'])->default('Asia');
             $table->string('region',26);
             $table->decimal('surface_area',10,2)->default(0.00);
-            $table->year('indep_year')->nullable();
+            $table->smallInteger('indep_year')->nullable();
             $table->integer('population')->default(0);
             $table->decimal('life_expectancy',3,1)->nullable();
             $table->decimal('gnp',10,2)->nullable();
