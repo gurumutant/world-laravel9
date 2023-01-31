@@ -2,20 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CityDataTable;
 use App\Models\City;
+use App\Models\Country;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 
 class CityController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CityDataTable $dataTable)
     {
-        //
+        return $dataTable->render('city.index');
     }
 
     /**
@@ -25,7 +37,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::pluck('name', 'id')->all();
+        $data = compact('countries');
+        return view('city.create', $data);
     }
 
     /**
@@ -36,7 +50,9 @@ class CityController extends Controller
      */
     public function store(StoreCityRequest $request)
     {
-        //
+        $data = $request->all();
+        City::create($data);
+        return redirect(route('city.index'))->with(['success' => 'Data berhasil ditambahkan']);
     }
 
     /**
@@ -45,9 +61,10 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show($id)
     {
-        //
+        $data = City::find($id);
+        return $data->name."<br>".$data->country->name."<br>".$data->district;
     }
 
     /**
@@ -56,9 +73,12 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit($id)
     {
-        //
+        $countries = Country::pluck('name', 'id')->all();
+        $city = City::find($id);
+        $data = compact('city','countries');
+        return view('city.edit', $data);
     }
 
     /**
@@ -68,9 +88,12 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCityRequest $request, City $city)
+    public function update(UpdateCityRequest $request, $id)
     {
-        //
+        $city = City::find($id);
+        $data = $request->all();
+        $city->update($data);
+        return redirect(route('city.index'))->with(['success' => 'Data berhasil diubah']);
     }
 
     /**
@@ -79,8 +102,9 @@ class CityController extends Controller
      * @param  \App\Models\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($city)
     {
-        //
+        City::destroy($city);  
+        return redirect(route('city.index'))->with(['success' => 'Data berhasil dihapus']);
     }
 }

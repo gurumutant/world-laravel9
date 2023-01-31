@@ -13,7 +13,7 @@ class UpdateCityRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateCityRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required',
+            'country_id'=>'required',
+            'district'=>'required',
+            'population'=>'required',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CountryDataTable;
 use App\Models\Country;
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
@@ -13,12 +14,13 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CountryDataTable $dataTable)
     {
-        $countries = Country::with('citiesCount')->get();
-        foreach ($countries as $country) {
-            echo $country->name." has ".$country->citiesCount." cities<br>";
-        }
+        return $dataTable->render('country.index');
+        // $countries = Country::with('citiesCount')->get();
+        // foreach ($countries as $country) {
+        //     echo $country->name." has ".$country->citiesCount." cities<br>";
+        // }
     }
 
     /**

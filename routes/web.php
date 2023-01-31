@@ -23,3 +23,6 @@ Route::get('/', function () {
 Route::resource('country', CountryController::class);
 Route::resource('city', CityController::class);
 Route::resource('country-language', CountryLanguageController::class);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
