@@ -7,7 +7,7 @@
             <div class="card-body">
                 <a href="{{ route("city.create") }}">
                     <button type="button" class="btn btn-primary float-right">
-                        <i class="bi bi-database-add"></i> Tambah
+                        <i class="bi bi-database-add"></i> Add
                     </button>
                 </a>
                 {{ $dataTable->table() }}
@@ -36,10 +36,8 @@
  
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
-
-    <script>
-    
-        $(document).ready( function(){
+    <script type="module">
+        $(function(){
             $('body').on('click', '.detail', function () {
             var id = $(this).attr('data-id');
             $.ajax({
@@ -48,8 +46,7 @@
                 data: {id: id},
                 success: function(response){ 
                     $('.modal-body').html(response);
-                    jQuery.noConflict();
-                    $('#detailModal').modal('show'); 
+                    $('#detailModal').show(); 
                 }
             });
             });

@@ -28,6 +28,7 @@ class CityDataTable extends DataTable
                     'model' => $city,
                     'form_url' => route('city.destroy', $city->id),
                     'edit_url' => route('city.edit', $city->id),
+                    'detail_url' => route('city.show', $city->id)
                 ]);
             })
             ->setRowId('id');

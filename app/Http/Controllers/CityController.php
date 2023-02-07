@@ -63,8 +63,11 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        $data = City::find($id);
-        return $data->name."<br>".$data->country->name."<br>".$data->district;
+        $city = City::find($id);
+        $data = compact('city');
+        return view('city.detail', $data);
+        // if using modal
+        // return $data->name."<br>".$data->country->name."<br>".$data->district;
     }
 
     /**

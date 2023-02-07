@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Tambah City</div>
+                    <div class="card-header">Create City</div>
                         <!-- form start -->
                     {{ Form::open(['url'=>route('city.store')]) }}
                     <div class="card-body">
